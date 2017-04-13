@@ -1,0 +1,6 @@
+function paths = env_paths_tracking(varargin)
+    paths.net_base = 'absolute path to your networks folder'; % e.g. '/home/berti/deep-one-shot/siam-fc_tracking/nets/';
+    paths.eval_set_base = 'absolute path to your datasets folder'; % e.g. '/home/berti/datasets/';
+    paths.stats = 'absolute location of ILSVRC2015 stats'; % e.g.'/home/berti/deep-one-shot/siam-fc_training/data/ILSVRC2015_crops_90_stats.mat';
+    paths = vl_argparse(paths, varargin);
+end

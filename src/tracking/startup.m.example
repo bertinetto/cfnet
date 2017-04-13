@@ -1,0 +1,3 @@
+addpath(genpath('your path to matconvnet')); % edit
+addpath(genpath('../common'));
+vl_setupnn;
