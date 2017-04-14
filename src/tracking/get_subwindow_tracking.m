@@ -49,8 +49,6 @@ function [im_patch, im_patch_original] = get_subwindow_tracking(im, pos, model_s
         % Strangely, sometimes model_sz/original_sz doesn't output model_sz and output of rescaling has to be forced to model_sz
         % (gpu version of imresize does not allow array as model size, only ratio
         if size(im_patch,1)~=model_sz(1)
-            % WARNING: camera ready used mexResize and not imresize, this could cause minor differences in results
-%             im_patch = gpuArray(mexResize(gather(im_patch_original), model_sz, 'auto'));
             im_patch = imresize(gather(im_patch_original), model_sz);
             if ~isempty(gpus)
                 im_patch = gpuArray(im_patch);
