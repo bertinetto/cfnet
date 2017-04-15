@@ -1,7 +1,22 @@
 function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes, all_gt, mean_t, std_t] = run_tracker_evaluation(video, tracker_params, varargin)
 %RUN_TRACKER_EVALUATION
     % Performs an evaluation similar to the OTB-TRE by initializing the tracker at different starting point in the sequence.
-    % Evaluation can be done on a single video or on all videos of the
+    % Evaluation can be done on a single video or on all videos in the
+    % specified run_params.dataset
+
+    % Example with CFNet
+        % tracker_par.join.method = 'corrfilt';
+        % tracker_par.exemplarSize = 255;
+        % tracker_par.net = 'cfnet-conv2_e80.mat';
+        % tracker_par.net_gray = 'cfnet-conv2_gray_e40.mat';
+        % [~,~,dist,overlap,~,~,~,~] = run_tracker_evaluation('all', tracker_par);
+
+    % Example with baseline (improved SiamFC)
+        % tracker_par.join.method = 'xcorr';
+        % tracker_par.exemplarSize = 127;
+        % tracker_par.net = 'baseline-conv5_e55.mat';
+        % tracker_par.net_gray = 'baseline-conv5_gray_e100.mat';
+        % [~,~,dist,overlap,~,~,~,~] = run_tracker_evaluation('all', tracker_par);
 
     global OPE TRE;
     OPE = 1; TRE = 2;
