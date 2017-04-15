@@ -11,6 +11,7 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
     run_params.log = false;
     run_params.log_prefix = '';
     run_params.stop_on_failure = true; % stop the evaluation after failure and set to zero overlap all remaining frames
+    run_params.dataset = 'validation'
     run_params = vl_argparse(run_params, varargin);
 
     if isfield(tracker_params, 'paths')
@@ -34,7 +35,7 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
         case 'all'
             % all videos, call self with each video name.
             % only keep valid directory names
-            dirs = dir(fullfile(tracker_params.paths.eval_set_base, tracker_params.dataset));
+            dirs = dir(fullfile(tracker_params.paths.eval_set_base, run_params.dataset));
             videos = {dirs.name};
             videos(strcmp('.', videos) | strcmp('..', videos) | ...
                 strcmp('anno', videos) | ~[dirs.isdir]) = [];
@@ -71,7 +72,7 @@ function [all_boxes, all_gt, all_type, times, frames_ontrack] = do_OTB_TRE(video
     % we were given the name of a single video to process.
     % get image file names, initial state, and ground truth for evaluation
     global OPE TRE;
-    [tpar.imgFiles, ground_truth] = load_video_info_votformat(fullfile(tpar.paths.eval_set_base,tpar.dataset), video);
+    [tpar.imgFiles, ground_truth] = load_video_info_votformat(fullfile(tpar.paths.eval_set_base,rpar.dataset), video);
     tpar.video = video;
     if rpar.stop_on_failure
         tpar.track_lost = @(frame, box) track_lost_func(frame, box, ground_truth);

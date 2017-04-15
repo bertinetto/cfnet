@@ -14,7 +14,6 @@ function [bboxes, speed] = tracker(varargin)
     p.zLR = 0.01; % update rate of the exemplar for the rolling avg (use very low values <0.015)
     %% execution, visualization, benchmark
     p.video = '';
-    p.dataset = 'validation';
     p.visualization = false;
     p.gpus = 1;
     p.track_lost = [];
