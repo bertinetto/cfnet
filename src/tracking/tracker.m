@@ -184,7 +184,7 @@ function [bboxes, speed] = tracker(varargin)
             [x_crops, pad_masks_x] = make_scale_pyramid(im, p.targetPosition, scaledInstance, p.instanceSize, avgChans, stats, p);
             copy = @(v, n) cellfun(@(x) repmat(x, [1 1 1 n]), v, 'UniformOutput', false);
             z_out = interleave(z_out_id, copy(z_out_val, p.numScale));
-            [newTargetPosition, newScale] = tracker_step(net_x, s_x, s_z, scoreId, z_out, x_crops, pad_masks_x, p.targetPosition, window, bg_hist, fg_hist, p);
+            [newTargetPosition, newScale] = tracker_step(net_x, s_x, s_z, scoreId, z_out, x_crops, pad_masks_x, p.targetPosition, window, p);
             s_x = max(min_s_x, min(max_s_x, (1-p.scaleLR)*s_x + p.scaleLR*scaledInstance(newScale)));
 
             % update target position

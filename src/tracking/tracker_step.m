@@ -1,5 +1,5 @@
 
-function [newTargetPosition, bestScale] = tracker_step(net_x, s_x, s_z, scoreId, z_out, x_crops, pad_masks_x, targetPosition, window, bg_hist, fg_hist, p)
+function [newTargetPosition, bestScale] = tracker_step(net_x, s_x, s_z, scoreId, z_out, x_crops, pad_masks_x, targetPosition, window, p)
     % run a forward pass of the CNN
     net_x.eval([z_out, {'instance', x_crops}]);
     responseMaps = reshape(net_x.vars(scoreId).value, [p.scoreSize p.scoreSize p.numScale]);
