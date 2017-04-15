@@ -1,0 +1,4 @@
+addpath(genpath('/path/to/MatConvNet'));
+addpath(genpath('/path/to/deep-one-shot/common'));
+addpath(genpath('/path/to/deep-one-shot/siam-fc_tracking'));
+vl_setupnn;
