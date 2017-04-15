@@ -1,5 +1,3 @@
-networks/**
-data/**
 env_paths_tracking.m
 env_paths_training.m
 startup.m
