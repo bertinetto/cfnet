@@ -245,7 +245,7 @@ function [bboxes, speed] = tracker(varargin)
         end
     end
     overall_time = toc(overall_tic);
-    n_frames_ontrack = sum(sum(bboxes==0,2)~=4);
+    n_frames_ontrack = sum(sum(bboxes==0,2)~=4) - p.startFrame + 1;
     if isempty(p.track_lost)
         speed = nImgs / overall_time;
     else

@@ -28,7 +28,6 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
     run_params.stop_on_failure = true; % stop the evaluation after failure and set to zero overlap all remaining frames
     run_params.dataset = 'validation'
     run_params = vl_argparse(run_params, varargin);
-
     if isfield(tracker_params, 'paths')
         tracker_params.paths = env_paths_tracking(tracker_params.paths);
     else
@@ -45,7 +44,6 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
     all_gt = [];
     all_type = [];
     times = [];
-    frames_ontrack = [];
     switch video
         case 'all'
             % all videos, call self with each video name.
@@ -59,12 +57,12 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
             for k = 1:nv
                 fprintf('%d/%d - %s\n', k, nv, videos{k});
                 if k>1, tracker_params.init_gpu = false; end
-                [all_boxes, all_gt, all_type, times, frames_ontrack] = do_OTB_TRE(videos{k}, all_boxes, all_gt, all_type, times, frames_ontrack, run_params.subSeq, tracker_params, run_params);
+                [all_boxes, all_gt, all_type, times] = do_OTB_TRE(videos{k}, all_boxes, all_gt, all_type, times, run_params.subSeq, tracker_params, run_params);
             end
 
         otherwise
             % run only once
-            [all_boxes, all_gt, all_type, times, frames_ontrack] = do_OTB_TRE(video, all_boxes, all_gt, all_type, times, frames_ontrack, run_params.subSeq, tracker_params, run_params);
+            [all_boxes, all_gt, all_type, times] = do_OTB_TRE(video, all_boxes, all_gt, all_type, times, run_params.subSeq, tracker_params, run_params);
     end
 
     distances = applyToRows(dist_fun, all_boxes, all_gt);
@@ -83,7 +81,7 @@ function [curve, auc] = compute_score(scores, th_points)
     auc = trapz(curve);
 end
 
-function [all_boxes, all_gt, all_type, times, frames_ontrack] = do_OTB_TRE(video, all_boxes, all_gt, all_type, times, frames_ontrack, subSeq, tpar, rpar)
+function [all_boxes, all_gt, all_type, times] = do_OTB_TRE(video, all_boxes, all_gt, all_type, times, subSeq, tpar, rpar)
     % we were given the name of a single video to process.
     % get image file names, initial state, and ground truth for evaluation
     global OPE TRE;
@@ -113,7 +111,6 @@ function [all_boxes, all_gt, all_type, times, frames_ontrack] = do_OTB_TRE(video
         A = new_boxes(1:tpar.startFrame-1, :);
         assert(sum(A(:))==0)
         new_boxes(1:tpar.startFrame-1, :) = [];
-        frames_ontrack(end+1) = sum(sum(new_boxes==0,2)~=4);
         if i==1
             type = OPE*ones(n_subframes ,1);
         else
