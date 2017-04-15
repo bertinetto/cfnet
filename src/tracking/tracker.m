@@ -27,8 +27,6 @@ function [bboxes, speed] = tracker(varargin)
 
     %% params from the network architecture params (TODO: should be inferred from the saved network)
     % they have to be consistent with the training
-    p.exemplarSize = 127;  % (should be 255 for cfnets)
-    p.instanceSize = 255;
     p.scoreSize = 33;
     p.totalStride = 4;
     p.contextAmount = 0.5; % context amount for the exemplar
@@ -50,9 +48,13 @@ function [bboxes, speed] = tracker(varargin)
         case 'xcorr'
             p.trim_x_branch = {'br2_','join_xcorr','fin_'};
             p.trim_z_branch = {'br1_'};
+			p.exemplarSize = 127;
+			p.instanceSize = 255;
         case 'corrfilt'
             p.trim_x_branch = {'br2_','join_xcorr','fin_adjust'};
             p.trim_z_branch = {'br1_','join_cf','join_crop_z'};
+			p.exemplarSize = 255;
+			p.instanceSize = 255;
         otherwise
             error('network type unspecified');
     end
@@ -171,6 +173,8 @@ function [bboxes, speed] = tracker(varargin)
     %% Tracker main loop
     scoreId = net_x.getVarIndex(p.id_score);
     overall_tic = tic;
+   c = clock;
+   disp(datestr(datenum(c(1),c(2),c(3),c(4),c(5),c(6))));
     for i = p.startFrame:nImgs
         if i>p.startFrame
             im = single(p.imgFiles{i});
@@ -244,11 +248,13 @@ function [bboxes, speed] = tracker(varargin)
             break
         end
     end
+   c = clock;
+   disp(datestr(datenum(c(1),c(2),c(3),c(4),c(5),c(6))));	
     overall_time = toc(overall_tic);
     n_frames_ontrack = sum(sum(bboxes==0,2)~=4);
     if isempty(p.track_lost)
-        speed = nImgs / overall_time;
+        speed = (nImgs-p.startFrame+1) / overall_time;
     else
-        speed = (n_frames_ontrack-p.startFrame+1)/overall_time;
+        speed = n_frames_ontrack/overall_time;
     end
 end
