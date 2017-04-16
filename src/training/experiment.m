@@ -62,6 +62,7 @@ function [net, stats] = experiment(imdb_video, varargin)
     if isempty(imdb_video)
         fprintf('loading imdb video...\n');
         imdb_video = load(opts.imdbVideoPath);
+        imdb_video = imdb_video.imdb_video;
     end
 
     % Load dataset statistics for data augmentation
