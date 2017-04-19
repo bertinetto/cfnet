@@ -173,8 +173,6 @@ function [bboxes, speed] = tracker(varargin)
     %% Tracker main loop
     scoreId = net_x.getVarIndex(p.id_score);
     overall_tic = tic;
-   c = clock;
-   disp(datestr(datenum(c(1),c(2),c(3),c(4),c(5),c(6))));
     for i = p.startFrame:nImgs
         if i>p.startFrame
             im = single(p.imgFiles{i});
@@ -248,8 +246,6 @@ function [bboxes, speed] = tracker(varargin)
             break
         end
     end
-   c = clock;
-   disp(datestr(datenum(c(1),c(2),c(3),c(4),c(5),c(6))));	
     overall_time = toc(overall_tic);
     n_frames_ontrack = sum(sum(bboxes==0,2)~=4);
     if isempty(p.track_lost)
