@@ -140,7 +140,7 @@ function [bboxes, speed] = tracker(varargin)
     scaledExemplar = s_z .* scales;
     % initialize the exemplar
     [z_crop, ~] = make_scale_pyramid(im, p.targetPosition, scaledExemplar, p.exemplarSize, avgChans, stats, p);
-    z_crop = z_crop(:,:,:,2);
+    z_crop = z_crop(:,:,:,ceil(p.numScale/2));
 
     if p.subMean
         z_crop = bsxfun(@minus, z_crop, reshape(stats.z.rgbMean, [1 1 3]));
@@ -198,7 +198,7 @@ function [bboxes, speed] = tracker(varargin)
             if p.zLR > 0
                 scaledExemplar = s_z .* scales;
                 [z_crop, ~] = make_scale_pyramid(im, p.targetPosition, scaledExemplar, p.exemplarSize, avgChans, stats, p);
-                z_crop = z_crop(:,:,:,2);
+                z_crop = z_crop(:,:,:,ceil(p.numScale/2));
                 if p.subMean,   z_crop = bsxfun(@minus, z_crop, reshape(stats.z.rgbMean, [1 1 3])); end
                 eval_z_tic = tic;
                 net_z.eval({'exemplar', z_crop});
