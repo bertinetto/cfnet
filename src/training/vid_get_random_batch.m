@@ -103,6 +103,8 @@ function [imout_z, imout_x, labels, sizes_z, sizes_x] = vid_get_random_batch(imd
 
     % get absolute paths of crops locations
     for i=1:batch_size
+        % NOTE: doing the experiments for CVPR'17 we realized that using the large 255x255 crops and then extracting the inner 127x127 during training
+        %  gives slightly better results than using the offline saved 127x127 crops. Probably because these are slight off-centered. 
         if pair_types_neg(i)==HARD_NEG_PAIR
             crops_z_string{i} = [strrep(fullfile(data_dir, objects.z{i}.frame_path), '.JPEG','') '.' num2str(objects.z{i}.track_id, '%02d') '.crop.x.jpg'];
         else

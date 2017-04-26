@@ -26,7 +26,7 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
     run_params.log = false;
     run_params.log_prefix = '';
     run_params.stop_on_failure = true; % stop the evaluation after failure and set to zero overlap all remaining frames
-    run_params.dataset = 'validation'
+    run_params.dataset = 'validation';
     run_params = vl_argparse(run_params, varargin);
     if isfield(tracker_params, 'paths')
         tracker_params.paths = env_paths_tracking(tracker_params.paths);
