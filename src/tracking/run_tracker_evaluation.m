@@ -6,14 +6,12 @@ function [curve_dist, curve_overlap, expected_dist, expected_overlap, all_boxes,
 
     % Example with CFNet
         % tracker_par.join.method = 'corrfilt';
-        % tracker_par.exemplarSize = 255;
         % tracker_par.net = 'cfnet-conv2_e80.mat';
         % tracker_par.net_gray = 'cfnet-conv2_gray_e40.mat';
         % [~,~,dist,overlap,~,~,~,~] = run_tracker_evaluation('all', tracker_par);
 
     % Example with baseline (improved SiamFC)
         % tracker_par.join.method = 'xcorr';
-        % tracker_par.exemplarSize = 127;
         % tracker_par.net = 'baseline-conv5_e55.mat';
         % tracker_par.net_gray = 'baseline-conv5_gray_e100.mat';
         % [~,~,dist,overlap,~,~,~,~] = run_tracker_evaluation('all', tracker_par);
