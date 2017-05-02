@@ -1,8 +1,8 @@
 function [bboxes, speed] = tracker(varargin)
     %% default hyper-params for SiamFC tracker.
-    p.join.method = '';
-    p.net = '';
-    p.net_gray = '';
+    p.join.method = 'xcorr';
+    p.net = 'baseline-conv5_e55.mat';
+    p.net_gray = 'baseline-conv5_gray_e100.mat';
     p.numScale = 3;
     p.scaleStep = 1.04;
     p.scalePenalty = 0.97;
@@ -133,8 +133,8 @@ function [bboxes, speed] = tracker(varargin)
 
     wc_z = p.targetSize(2) + p.contextAmount*sum(p.targetSize);
     hc_z = p.targetSize(1) + p.contextAmount*sum(p.targetSize);
-    s_z = p.exemplarSize/127 * sqrt(wc_z*hc_z);
-    s_x = p.instanceSize/127 * sqrt(wc_z*hc_z);    
+    s_z = sqrt(wc_z*hc_z);
+    s_x = p.instanceSize/p.exemplarSize * sqrt(wc_z*hc_z);    
     scales = (p.scaleStep .^ ((ceil(p.numScale/2)-p.numScale) : floor(p.numScale/2)));
     
     scaledExemplar = s_z .* scales;
