@@ -12,7 +12,6 @@ function [bboxes, speed] = tracker(varargin)
     p.minSFactor = 0.2;
     p.maxSFactor = 5;
     p.zLR = 0.01; % update rate of the exemplar for the rolling avg (use very low values <0.015)
-    %% execution, visualization, benchmark
     p.video = '';
     p.visualization = false;
     p.gpus = 1;
@@ -134,7 +133,7 @@ function [bboxes, speed] = tracker(varargin)
     wc_z = p.targetSize(2) + p.contextAmount*sum(p.targetSize);
     hc_z = p.targetSize(1) + p.contextAmount*sum(p.targetSize);
     s_z = sqrt(wc_z*hc_z);
-    s_x = p.instanceSize/p.exemplarSize * sqrt(wc_z*hc_z);    
+    s_x = p.instanceSize/p.exemplarSize * s_z;
     scales = (p.scaleStep .^ ((ceil(p.numScale/2)-p.numScale) : floor(p.numScale/2)));
     
     scaledExemplar = s_z .* scales;
@@ -239,9 +238,7 @@ function [bboxes, speed] = tracker(varargin)
             end
         end
 
-        %stop the tracker on track loss (if a 'track_lost' function has
-        %been specified, which compares it with the ground truth,
-        %according to the VOT protocol)
+        %stop the tracker on track loss (if a 'track_lost' function is specified)
         if ~isempty(p.track_lost) && p.track_lost(i, bboxes(i,:)),
             break
         end

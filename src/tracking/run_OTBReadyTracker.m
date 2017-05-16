@@ -6,7 +6,7 @@ function results = run_OTBReadyTracker(seq, res_path, bSaveImage)
     tracker_params.gpus = 1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    tracker_params.net = 'some-pretrained-network;
+    tracker_params.net = 'some-pretrained-network';
     tracker_params.net_gray = 'some-pretrained-network_gray';
     tracker_params.visualization = false;
     tracker_params.join.method = 'corrfilt'; % or 'xcorr'
