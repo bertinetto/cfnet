@@ -1,17 +1,17 @@
 function [bboxes, speed] = tracker(varargin)
     %% default hyper-params for SiamFC tracker.
-    p.join.method = 'xcorr';
-    p.net = 'baseline-conv5_e55.mat';
-    p.net_gray = 'baseline-conv5_gray_e100.mat';
+    p.join.method = 'corrfilt';
+    p.net = 'cfnet-conv2_e80.mat';
+    p.net_gray = 'cfnet-conv2_gray_e40.mat';
     p.numScale = 3;
-    p.scaleStep = 1.04;
-    p.scalePenalty = 0.97;
-    p.scaleLR = 0.59;
+    p.scaleStep = 1.0575;
+    p.scalePenalty = 0.9780;
+    p.scaleLR = 0.52;
     p.responseUp = 8;
-    p.wInfluence = 0.25; % influence of cosine window for displacement penalty
+    p.wInfluence = 0.2625; % influence of cosine window for displacement penalty
     p.minSFactor = 0.2;
     p.maxSFactor = 5;
-    p.zLR = 0.01; % update rate of the exemplar for the rolling avg (use very low values <0.015)
+    p.zLR = 0.005; % update rate of the exemplar for the rolling avg (use very low values <0.015)
     p.video = '';
     p.visualization = false;
     p.gpus = 1;
