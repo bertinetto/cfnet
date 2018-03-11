@@ -14,9 +14,9 @@ Project page: [http://www.robots.ox.ac.uk/~luca/cfnet.html]
 [ **Tracking only** ] If you don't care about training, you can simply use one of our pretrained networks with our basic tracker.
   1. Prerequisites: GPU, CUDA (we used 7.5), [cuDNN](https://developer.nvidia.com/cudnn) (we used v5.1), Matlab, [MatConvNet](http://www.vlfeat.org/matconvnet/install/).
   2. Clone the repository.
-  3. Download the pretrained networks from [here](https://bit.ly/cfnet_networks) and unzip the archive in `cfnet/pretrained`.
+  3. Download the pretrained networks from [here](https://drive.google.com/open?id=0B7Awq_aAemXQZ3JTc2l6TTZlQVE) and unzip the archive in `cfnet/pretrained`.
   4. Go to `cfnet/src/tracking/` and remove the trailing `.example` from `env_paths_tracking.m.example`, `startup.m.example`, editing the files as appropriate.
-  5. Be sure to have at least one video sequence in the appropriate format. The easiest thing to do is to download the validation set (from [here](https://bit.ly/cfnet_validation)) that we used for the tracking evaluation and then extract the `validation` folder in `cfnet/data/`.
+  5. Be sure to have at least one video sequence in the appropriate format. The easiest thing to do is to download the validation set (from [here](https://drive.google.com/file/d/0B7Awq_aAemXQSnhBVW5LNmNvUU0/view?usp=sharing)) that we used for the tracking evaluation and then extract the `validation` folder in `cfnet/data/`.
   6. Start from one of the `cfnet/src/tracking/run_*_evaluation.m` entry points.
 
  [ **Training and tracking** ] Start here if instead you prefer to DIY and train your own networks.
