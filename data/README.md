@@ -1,2 +1,2 @@
-Place here things like the tracking [validation set](http://bit.ly/cfnet_validation), the [training set](https://github.com/bertinetto/siamese-fc/tree/master/ILSVRC15-curation), [metadata](https://drive.google.com/file/d/0B7Awq_aAemXQMFpSUU90OW5oaXc/view?usp=sharing) and [stats](https://drive.google.com/file/d/0B7Awq_aAemXQcndzY3M5dkprVTA/view?usp=sharing).
+Place here things like the tracking [validation set](https://drive.google.com/file/d/0B7Awq_aAemXQSnhBVW5LNmNvUU0/view?usp=sharing), the [training set](https://github.com/bertinetto/siamese-fc/tree/master/ILSVRC15-curation), [metadata](https://drive.google.com/file/d/0B7Awq_aAemXQMFpSUU90OW5oaXc/view?usp=sharing) and [stats](https://drive.google.com/file/d/0B7Awq_aAemXQcndzY3M5dkprVTA/view?usp=sharing).
 
