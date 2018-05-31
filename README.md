@@ -26,7 +26,7 @@ In particular, we received several reports of problems with Matlab 2017.
   1. Prerequisites: GPU, CUDA (we used 7.5), [cuDNN](https://developer.nvidia.com/cudnn) (we used v5.1), Matlab, [MatConvNet](http://www.vlfeat.org/matconvnet/install/).
   2. Clone the repository.
   3. Follow these [step-by-step instructions](https://github.com/bertinetto/siamese-fc/tree/master/ILSVRC15-curation), which will help you generating a curated dataset compatible with the rest of the code.  
-  4. If you did not generate your own metadata, download [imdb_video_2016-10.mat](bit.ly/cfnet_imdb_video) (6.7GB) with all the metadata and also the [dataset stats](http://bit.ly/imdb_video_stats). Put them in `cfnet/data/`.
+  4. If you did not generate your own metadata, download [imdb_video_2016-10.mat](https://drive.google.com/file/d/0B7Awq_aAemXQMFpSUU90OW5oaXc/view?usp=sharing) (6.7GB) with all the metadata and also the [dataset stats](https://drive.google.com/file/d/0B7Awq_aAemXQcndzY3M5dkprVTA/view?usp=sharing). Put them in `cfnet/data/`.
   5. Go to `cfnet/src/training` and remove the trailing `.example` from `env_paths_training.m.example` and `startup.m.example`, editing the files as appropriate.
   6. The various `cfnet/train/run_experiment_*.m` are some examples to start training. Default hyper-params are at the start of `experiment.m` and are overwritten by custom ones specified in `run_experiment_*.m`.
   7. By default, training plots are saved in `cfnet/src/training/data/`. When you are happy, grab a network snapshot (`net-epoch-X.mat`) and save it somewhere (e.g. `cfnet/pretrained/`).
