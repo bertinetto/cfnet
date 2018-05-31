@@ -8,10 +8,9 @@
 - - - -
 Project page: [http://www.robots.ox.ac.uk/~luca/cfnet.html]
 - - - -
-*WARNING*: we used Matlab 2015, MatConvNet v1.0beta24, CUDA 8.0 and cudnn 5.1.
-Other configurations might work, but it is not guaranteed.
-In particular, we received several reports of problems with Matlab 2017.
-----
+**WARNING**: we used Matlab 2015, MatConvNet v1.0beta24, CUDA 8.0 and cudnn 5.1. Other configurations might work, but it is not guaranteed. In particular, we received several reports of problems with Matlab 2017.
+- - - -
+
 #### Getting started
 
 [ **Tracking only** ] If you don't care about training, you can simply use one of our pretrained networks with our basic tracker.
